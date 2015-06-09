@@ -69,6 +69,8 @@ class DatabaseImportMixin(object):
     def __init__(self, *args, **kwargs):
         super(DatabaseImportMixin, self).__init__(*args, **kwargs)
 
+
+
         if not self.import_date:
             self.import_date = datetime.datetime.utcnow().date()
 

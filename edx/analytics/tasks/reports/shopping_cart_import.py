@@ -66,6 +66,7 @@ class PullFromEcommerceTablesTask(DatabaseImportMixin, OverwriteOutputMixin, lui
             'verbose': self.verbose,
             'import_date': self.import_date,
             'overwrite': self.overwrite,
+            'database_name' : self.database_name,
         }
         yield (
             # Oscar Product Tables
