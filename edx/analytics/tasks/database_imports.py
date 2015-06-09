@@ -38,32 +38,35 @@ class DatabaseImportMixin(object):
         }
     """
 
-    database_name = luigi.Parameter(default="wwc")
+    # database_name = luigi.Parameter(default="wwc")
+    #
+    # if database_name == "oscar":
+    #     destination = luigi.Parameter(
+    #         default_from_config={'section': 'oscar-database-import', 'name': 'destination'}
+    #     )
+    #     credentials = luigi.Parameter(
+    #         default_from_config={'section': 'oscar-database-import', 'name': 'credentials'}
+    #     )
+    #     database = luigi.Parameter(
+    #         default_from_config={'section': 'oscar-database-import', 'name': 'database'}
+    #     )
+    #
+    # else:
+    destination = luigi.Parameter(
+        default_from_config={'section': 'database-import', 'name': 'destination'}
+    )
+    credentials = luigi.Parameter(
+        default_from_config={'section': 'database-import', 'name': 'credentials'}
+    )
+    # database = luigi.Parameter(
+    #     default_from_config={'section': 'database-import', 'name': 'database'}
+    # )
 
-    if database_name == "oscar":
-        print "SOOOOOOOOOOORCEEEE: ", database_name
+    database = 'ecommerce'
 
-        destination = luigi.Parameter(
-            default_from_config={'section': 'oscar-database-import', 'name': 'destination'}
-        )
-        credentials = luigi.Parameter(
-            default_from_config={'section': 'oscar-database-import', 'name': 'credentials'}
-        )
-        database = luigi.Parameter(
-            default_from_config={'section': 'oscar-database-import', 'name': 'database'}
-        )
-
-    else:
-        destination = luigi.Parameter(
-            default_from_config={'section': 'database-import', 'name': 'destination'}
-        )
-        credentials = luigi.Parameter(
-            default_from_config={'section': 'database-import', 'name': 'credentials'}
-        )
-        import_date = luigi.DateParameter(default=None)
-
-        num_mappers = luigi.Parameter(default=None, significant=False)
-        verbose = luigi.BooleanParameter(default=False, significant=False)
+    import_date = luigi.DateParameter(default=None)
+    num_mappers = luigi.Parameter(default=None, significant=False)
+    verbose = luigi.BooleanParameter(default=False, significant=False)
 
 
     def __init__(self, *args, **kwargs):
