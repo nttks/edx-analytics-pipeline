@@ -39,6 +39,7 @@ class PullFromShoppingCartTablesTask(DatabaseImportMixin, OverwriteOutputMixin, 
             'verbose': self.verbose,
             'import_date': self.import_date,
             'overwrite': self.overwrite,
+            'database_name' : self.database_name,
         }
         yield (
             # Original shopping cart tables
@@ -67,23 +68,23 @@ class PullFromEcommerceTablesTask(DatabaseImportMixin, OverwriteOutputMixin, lui
             'overwrite': self.overwrite,
         }
         yield (
-            # Ecommerce Product Tables
+            # Oscar Product Tables
             ImportProductCatalog(**kwargs),
             ImportProductCatalogAttributes(**kwargs),
             ImportProductCatalogAttributeValues(**kwargs),
 
-            # Ecommerce Order History Tables
+            # Oscar Order History Tables
             ImportOrderOrderHistory(**kwargs),
             ImportOrderHistoricalLine(**kwargs),
 
-            # Ecommerce Current State and Line Item Tables
+            # Oscar Current State and Line Item Tables
             ImportCurrentBasketState(**kwargs),
             ImportCurrentOrderState(**kwargs),
             ImportCurrentOrderLineState(**kwargs),
             ImportCurrentOrderLineAttributeState(**kwargs),
             ImportCurrentOrderLinePriceState(**kwargs),
 
-            # Ecommerce Payment Tables
+            # Oscar Payment Tables
             ImportOrderPaymentEvent(**kwargs),
             ImportPaymentSource(**kwargs),
             ImportPaymentTransactions(**kwargs),

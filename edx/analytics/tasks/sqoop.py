@@ -23,18 +23,6 @@ def load_sqoop_cmd():
     return luigi.configuration.get_config().get('sqoop', 'command', 'sqoop')
 
 
-class EcommerceSqoopImportTask(SqoopImportFromMysql):
-    destination = luigi.Parameter(
-        default_from_config={'section': 'ecomm-database-import', 'name': 'destination'}
-    )
-    credentials = luigi.Parameter(
-        default_from_config={'section': 'ecomm-database-import', 'name': 'credentials'}
-    )
-    database = luigi.Parameter(
-        default_from_config={'section': 'ecomm-database-import', 'name': 'database'}
-    )
-
-
 class SqoopImportTask(OverwriteOutputMixin, luigi.hadoop.BaseHadoopJobTask):
     """
     An abstract task that uses Sqoop to read data out of a database and
